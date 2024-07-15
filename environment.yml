@@ -1,0 +1,12 @@
+# conda env update -f environment.yml
+dependencies:
+  - python=3.12.4  # sua versão do Python
+  - pip
+  - pip:
+    - google-generativeai
+    - python-dotenv
+    - langchain-google-genai
+    - langchain
+    - langchain_community
+    - duckduckgo-search
+    - wikipedia

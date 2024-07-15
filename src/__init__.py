@@ -1,20 +1,12 @@
-"""
-Install the Google AI Python SDK
-
-$ pip install google-generativeai
-
-See the getting started guide for more information:
-https://ai.google.dev/gemini-api/docs/get-started/python
-"""
-
 import os
 
 import google.generativeai as genai
+from dotenv import load_dotenv
 
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+load_dotenv()
 
-# Create the model
-# See https://ai.google.dev/api/python/google/generativeai/GenerativeModel
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
 generation_config = {
   "temperature": 1,
   "top_p": 0.95,
@@ -25,15 +17,15 @@ generation_config = {
 
 model = genai.GenerativeModel(
   model_name="gemini-1.5-pro",
-  generation_config=generation_config,
-  # safety_settings = Adjust safety settings
-  # See https://ai.google.dev/gemini-api/docs/safety-settings
+  generation_config=generation_config
 )
 
-chat_session = model.start_chat(
-  history=[]
-)
+chat_session = model.start_chat(history=[])
 
-response = chat_session.send_message("INSERT_INPUT_HERE")
+response = chat_session.send_message("Ola")
+
+print(response.text)
+
+response = chat_session.send_message("Como voce esta hoje?")
 
 print(response.text)
